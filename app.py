@@ -17,7 +17,7 @@ def load_models():
     tokenizer = AutoTokenizer.from_pretrained("facebook/esm2_t30_150M_UR50D")
     esm_model = AutoModel.from_pretrained("facebook/esm2_t30_150M_UR50D")
     esm_model.eval()
-    xgb_model = joblib.load('petase_xgboost_model.pkl')
+    xgb_model = joblib.load('petase_xgboost_model (1).pkl')
     return tokenizer, esm_model, xgb_model
 
 with st.spinner("Loading AI Models..."):
