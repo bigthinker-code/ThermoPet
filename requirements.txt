@@ -2,5 +2,9 @@ torch
 transformers
 xgboost
 scikit-learn
+joblib
 streamlit
 numpy
+pandas
+altair
+requests
