@@ -3,7 +3,7 @@ transformers
 xgboost
 scikit-learn
 joblib
-streamlit
+streamlit>=1.40
 numpy
 pandas
 plotly
