@@ -16,26 +16,40 @@ AA = "ACDEFGHIKLMNPQRSTVWY"
 TRIAD = {160: "S", 206: "D", 237: "H"}
 PRESETS = {"Wild type": "", "ThermoPETase": "S121E/D186H/R280A",
            "FAST-PETase": "S121E/D186H/R224Q/N233K/R280A"}
-AMBER, CYAN, BG, CARD = "#ffb020", "#22d3ee", "#07080c", "#10121a"
+AMBER, CYAN, BG, CARD = "#f5b942", "#2dd4bf", "#07141a", "#0f232d"
 
 st.set_page_config(page_title="ThermoPET", page_icon="🧬", layout="wide")
-st.markdown(f"""<style>
-.stApp{{background:radial-gradient(1100px 520px at 8% -8%,#2a1a06 0,{BG} 58%)}}
-header[data-testid=stHeader]{{background:transparent}}
-.hero{{padding:28px 32px;border-radius:20px;border:1px solid #2a2f3d;margin-bottom:18px;
-background:linear-gradient(120deg,#14161f,#0b0c11 60%,#1b1206)}}
-.hero h1{{font-size:3rem;margin:0;letter-spacing:-1px}}
-.hero h1 span{{background:linear-gradient(90deg,{CYAN},{AMBER},#fb7185);-webkit-background-clip:text;color:transparent}}
-.hero p{{color:#9aa3b5;max-width:760px;margin:6px 0 14px}}
-.kick{{color:{AMBER};font-size:.78rem;letter-spacing:3px;text-transform:uppercase}}
-.chip{{display:inline-block;padding:4px 12px;margin:0 8px 6px 0;border-radius:99px;border:1px solid #2f3547;color:#cbd2e1;font-size:.8rem;background:#0f1118}}
-div[data-testid=stMetric]{{background:{CARD};border:1px solid #232838;border-radius:14px;padding:14px 16px}}
-.stButton>button[kind=primary]{{background:linear-gradient(90deg,#f59e0b,#fb7185);border:0;color:#111;font-weight:700}}
-.stTabs [data-baseweb=tab]{{font-size:1rem;padding:10px 18px}}
-.seq{{font-family:monospace;line-height:2;background:{CARD};border:1px solid #232838;border-radius:12px;padding:12px}}
-.blk{{display:inline-block;margin:0 10px 0 0}} .blk i{{display:block;font-size:.6rem;color:#667085;font-style:normal}}
-.mut{{color:#111;background:{AMBER};border-radius:3px;padding:0 2px}}
-.leg span{{margin-right:18px;font-size:.85rem;color:#b6bdcc}} .dot{{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}}
+st.markdown("""<style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700;800&display=swap');
+html,body,.stApp,button,input,textarea{font-family:'Fira Sans',sans-serif}
+.stApp{background:#07141a}
+header[data-testid=stHeader]{background:transparent}
+footer{visibility:hidden}
+.block-container{max-width:1180px;padding-top:2.5rem}
+[data-testid=stSidebar]{background:#081920;border-right:1px solid #12313a}
+[data-testid=stSidebarNavLink]{border-radius:10px;padding:8px 10px}
+[data-testid=stSidebarNavLink][aria-current=page]{background:#0e2f38;font-weight:700}
+h2{font-weight:700;letter-spacing:-.5px}
+.hero{position:relative;overflow:hidden;border:1px solid #14424a;border-radius:26px;padding:58px 50px;margin-bottom:36px;
+background:radial-gradient(700px 420px at 95% 40%,rgba(245,185,66,.22),transparent 70%),#0a1d25}
+.hero:before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'><path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%232dd4bf' stroke-opacity='.3'/><path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%232dd4bf' stroke-opacity='.3'/></svg>");
+-webkit-mask-image:linear-gradient(90deg,transparent 40%,#000);mask-image:linear-gradient(90deg,transparent 40%,#000)}
+.hero>*{position:relative}
+.hero h1{font-size:3.6rem;line-height:1.05;font-weight:800;margin:0 0 18px;max-width:780px;letter-spacing:-1px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#2dd4bf,#f5b942);-webkit-background-clip:text;color:transparent}
+.hero p{color:#b8c7cc;font-size:1.15rem;max-width:650px;line-height:1.7;margin:0 0 22px}
+.chip{display:inline-block;padding:7px 16px;margin:0 10px 8px 0;border-radius:99px;border:1px solid #1e6b66;color:#5eead4;font-size:.9rem;background:rgba(7,20,26,.6)}
+.step{background:#0f232d;border:1px solid #16363f;border-top:3px solid #2dd4bf;border-radius:18px;padding:24px;height:100%}
+.step h4{margin:0 0 8px;font-size:1.3rem;font-weight:700}.step p{color:#9fb3b9;margin:0;line-height:1.6}
+.brand{font-size:1.8rem;font-weight:800;display:flex;gap:10px;align-items:center;margin-top:6px}
+.brand b{color:#2dd4bf;font-size:2rem}.tag{color:#8fb0b5;font-size:.92rem;line-height:1.5}
+div[data-testid=stMetric]{background:#0f232d;border:1px solid #16363f;border-radius:14px;padding:14px 16px}
+div[data-baseweb=input]>div,div[data-baseweb=textarea]>div,div[data-baseweb=select]>div{background:#0c2029;border-color:#16363f}
+.stButton>button[kind=primary],.stDownloadButton>button{background:linear-gradient(90deg,#2dd4bf,#f5b942);border:0;color:#06141a;font-weight:700}
+.seq{font-family:monospace;line-height:2;background:#0f232d;border:1px solid #16363f;border-radius:12px;padding:12px}
+.blk{display:inline-block;margin:0 10px 0 0}.blk i{display:block;font-size:.6rem;color:#6b8a90;font-style:normal}
+.mut{color:#111;background:#f5b942;border-radius:3px;padding:0 2px}
+.leg span{margin-right:18px;font-size:.85rem;color:#b6bdcc}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
 </style>""", unsafe_allow_html=True)
 
 @st.cache_resource(show_spinner="Loading ESM-2 and the XGBoost model...")
@@ -130,24 +144,24 @@ def seq_html(wt, s):
 
 def dcolor(d, m):
     t = max(-1, min(1, d/m)) if m else 0
-    cold, mid, hot = (59, 130, 246), (55, 65, 81), (255, 176, 32)
+    cold, mid, hot = (59, 130, 246), (55, 65, 81), (245, 185, 66)
     a, b = (mid, hot) if t >= 0 else (mid, cold)
     c = [int(a[i] + (b[i]-a[i])*abs(t)) for i in range(3)]
     return "#%02x%02x%02x" % tuple(c)
 
 VIEW_JS = """<div id="v" style="width:100%;height:__H__px;border-radius:14px;overflow:hidden;position:relative"></div>
 <script src="https://3Dmol.org/build/3Dmol-min.js"></script><script>
-const C=__CFG__;const v=$3Dmol.createViewer("v",{backgroundColor:"#07080c"});
+const C=__CFG__;const v=$3Dmol.createViewer("v",{backgroundColor:"#07141a"});
 const lab=(t,c)=>({fontSize:12,fontColor:c,backgroundColor:"#000",backgroundOpacity:0.65,showBackground:true});
 fetch("https://files.rcsb.org/download/"+C.pdb+".pdb").then(r=>{if(!r.ok)throw 0;return r.text()}).then(t=>{
 v.addModel(t,"pdb");v.setStyle({},{});let c={opacity:1};
 if(C.mode==="spectrum")c.color="spectrum";else if(C.mode==="grey")c.color="#4b5563";else c.colorfunc=a=>C.colors[a.resi]||"#374151";
 v.setStyle({chain:"A"},{cartoon:c});
 if(C.surface)v.addSurface($3Dmol.SurfaceType.MS,{opacity:0.18,color:"#9ca3af"},{chain:"A"});
-C.triad.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#22d3ee",radius:0.22}});
-v.addLabel(x[1],lab(0,"#22d3ee"),{chain:"A",resi:x[0],atom:"CA"})});
-C.muts.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#ffb020",radius:0.3},sphere:{color:"#ffb020",radius:0.55,opacity:0.45}});
-v.addLabel(x[1],lab(0,"#ffb020"),{chain:"A",resi:x[0],atom:"CA"})});
+C.triad.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#2dd4bf",radius:0.22}});
+v.addLabel(x[1],lab(0,"#2dd4bf"),{chain:"A",resi:x[0],atom:"CA"})});
+C.muts.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#f5b942",radius:0.3},sphere:{color:"#f5b942",radius:0.55,opacity:0.45}});
+v.addLabel(x[1],lab(0,"#f5b942"),{chain:"A",resi:x[0],atom:"CA"})});
 v.zoomTo({chain:"A"});if(C.spin)v.spin(true);v.render();
 }).catch(()=>{document.getElementById("v").innerHTML="<p style='color:#fb7185;padding:20px'>Could not load the structure from RCSB.</p>"});
 </script>"""
@@ -159,13 +173,6 @@ def viewer(muts, mode, surface, triad, spin, colors, h=560):
     components.html(VIEW_JS.replace("__CFG__", cfg).replace("__H__", str(h)), height=h+10)
 
 # ---------------------------------------------------------------- page
-st.markdown("""<div class="hero"><div class="kick">Enzyme engineering for plastic recycling</div>
-<h1>Thermo<span>PET</span></h1>
-<p>Predict the melting temperature of IsPETase mutants from sequence, scan every substitution
-at a position, and see where each mutation sits in the 3D structure.</p>
-<span class="chip">ESM-2 150M embeddings</span><span class="chip">XGBoost regressor</span>
-<span class="chip">640 features per sequence</span><span class="chip">Tm in °C</span></div>""",
-            unsafe_allow_html=True)
 
 try:
     WT, SRC = get_wt()
@@ -178,17 +185,13 @@ if bad:
 TR = {p: a for p, a in TRIAD.items() if len(WT) >= p and WT[p-1] == a}
 
 with st.sidebar:
-    st.subheader("Wild type")
-    st.write(f"Source: {SRC}\n\nLength: {len(WT)} residues")
-    st.caption("Mutation numbering follows the full UniProt sequence, for example S121E.")
-    with st.expander("Show sequence"): st.code(WT, language=None)
-    st.divider(); st.caption("Model: ESM-2 150M + XGBoost (version 1)")
+    st.markdown('<div class="brand"><b>&#11041;</b>ThermoPET</div><p class="tag">PETase melting temperature, '
+                'predicted from sequence and shown in 3D.</p>', unsafe_allow_html=True)
 
 for k, v in {"hist": [], "last": None}.items():
     st.session_state.setdefault(k, v)
-t_pred, t_3d, t_scan, t_batch, t_about = st.tabs(["Predict", "3D structure", "Scanner", "Batch", "About"])
 
-with t_pred:
+def page_predict():
     mode = st.radio("Input type", ["Mutations on wild type", "Full sequence"], horizontal=True)
     seq, label, muts = None, "", []
     try:
@@ -206,12 +209,7 @@ with t_pred:
     except ValueError as e:
         st.error(str(e))
     if st.button("Predict melting temperature", type="primary", disabled=seq is None):
-        with st.spinner("Predicting..."):
-            wt_tm, tm = predict_many([WT, seq])
-            refs = predict_many([apply_muts(WT, v)[0] for v in PRESETS.values()])
-        st.session_state.last = dict(label=label, muts=muts, seq=seq, tm=tm, wt=wt_tm, refs=list(refs))
-        st.session_state.hist.append({"variant": label, "tm_C": round(tm, 2), "wt_C": round(wt_tm, 2),
-                                      "delta_C": round(tm-wt_tm, 2)})
+        do_predict(seq, label, muts)
     L = st.session_state.last
     if L:
         d = L["tm"] - L["wt"]
@@ -235,7 +233,7 @@ with t_pred:
             h = pd.DataFrame(st.session_state.hist)
             st.dataframe(h, use_container_width=True, hide_index=True); dl(h, "thermopet_session.csv")
 
-with t_3d:
+def page_3d():
     L = st.session_state.last
     default = "/".join(L["muts"]) if L and L["muts"] else PRESETS["ThermoPETase"]
     c1, c2 = st.columns([2, 1])
@@ -266,7 +264,7 @@ with t_3d:
         st.dataframe(pd.DataFrame([{"mutation": m, "position": int(m[1:-1]), "from": m[0], "to": m[-1]} for m in ms]),
                      use_container_width=True, hide_index=True)
 
-with t_scan:
+def page_scan():
     st.write("Predict every single substitution across a range of positions.")
     c1, c2 = st.columns(2)
     a, b = int(c1.number_input("First position", 1, len(WT), 118)), int(c2.number_input("Last position", 1, len(WT), 124))
@@ -303,7 +301,7 @@ with t_scan:
             st.dataframe(pd.DataFrame({"variant": sets, "predicted_tm_C": pr.round(2)}),
                          use_container_width=True, hide_index=True)
 
-with t_batch:
+def page_batch():
     st.write("Upload a CSV with a column named mutations or sequence (optional name column), or paste one variant per line.")
     up = st.file_uploader("CSV file", type=["csv"])
     pasted = st.text_area("Or paste variants", height=110, placeholder="S121E/D186H\nS121E/D186H/R280A")
@@ -339,7 +337,7 @@ with t_batch:
         if err:
             st.warning(f"{len(err)} row(s) could not be used."); st.dataframe(pd.DataFrame(err), hide_index=True)
 
-with t_about:
+def page_method():
     st.subheader("How it works")
     st.write("The sequence goes through the ESM-2 150M protein language model. "
              f"The {'first token (CLS)' if POOLING == 'cls' else 'mean residue'} embedding (640 numbers) "
@@ -348,5 +346,66 @@ with t_about:
     st.subheader("Limits")
     st.write("Predictions are estimates from a model trained on a limited set of PETase variants. They are most "
              "reliable for a few point mutations near the training data. Use them to rank candidates before lab work.")
-    st.write("Add your test metrics (MAE, R squared), training set size and data sources here.")
+    st.subheader("Wild type sequence")
+    st.write(f"Source: {SRC}. Length: {len(WT)} residues. Mutation numbering follows the full UniProt sequence.")
+    st.code(WT, language=None)
     st.caption("Code: github.com/bigthinker-code/ThermoPet")
+
+
+def do_predict(seq, label, muts):
+    with st.spinner("Predicting..."):
+        wt_tm, tm = predict_many([WT, seq])
+        refs = predict_many([apply_muts(WT, v)[0] for v in PRESETS.values()])
+    st.session_state.last = dict(label=label, muts=muts, seq=seq, tm=tm, wt=wt_tm, refs=list(refs))
+    st.session_state.hist.append({"variant": label, "tm_C": round(tm, 2), "wt_C": round(wt_tm, 2),
+                                  "delta_C": round(tm - wt_tm, 2)})
+
+def home():
+    st.markdown("""<div class="hero"><h1>Predict PETase <em>Tm</em> and see where the mutations sit.</h1>
+<p>ThermoPET reads a list of mutations or a full IsPETase sequence and returns the predicted melting temperature,
+compared with the wild type from the same model, with a 3D view of every change.</p>
+<span class="chip">ESM-2 embeddings</span><span class="chip">3D mutation view</span>
+<span class="chip">Mutation scanner</span><span class="chip">Batch CSV</span></div>""", unsafe_allow_html=True)
+    st.markdown("## Try it now")
+    c1, c2 = st.columns([5, 1.4], vertical_alignment="bottom")
+    txt = c1.text_input("Mutations on wild type (IsPETase numbering)", PRESETS["ThermoPETase"], key="home_m")
+    if c2.button("Predict Tm", type="primary", use_container_width=True):
+        try:
+            s_, ms = apply_muts(WT, txt)
+            do_predict(s_, "/".join(ms) or "Wild type", ms)
+        except ValueError as e:
+            st.error(str(e))
+    L = st.session_state.last
+    if L:
+        d = L["tm"] - L["wt"]
+        a, b, c = st.columns(3)
+        a.metric("Predicted Tm", f"{L['tm']:.2f} °C", f"{d:+.2f} °C vs wild type")
+        b.metric("Wild type (same model)", f"{L['wt']:.2f} °C")
+        c.metric("Variant", L["label"])
+        st.caption("Open Predict for the full breakdown, or 3D Structure to see the mutations in the enzyme.")
+    st.markdown("<br>", unsafe_allow_html=True)
+    cols = st.columns(3)
+    for col, (t, p) in zip(cols, [("Enter mutations", "Type changes such as S121E, or paste a full sequence on the Predict page."),
+                                  ("Read the result", "Get the predicted Tm and the change against wild type from the same model."),
+                                  ("See it in 3D", "View the enzyme structure with each mutated residue highlighted.")]):
+        col.markdown(f'<div class="step"><h4>{t}</h4><p>{p}</p></div>', unsafe_allow_html=True)
+
+def page_engineer():
+    st.markdown("""<div class="hero"><h1>Built by <em>Agboola Abdulroheem Oyindamola</em></h1>
+<p>Biochemistry graduate with First Class Honours from the University of Ilorin. My background spans wet lab research,
+quality control, data analysis and bioinformatics, and I build machine learning tools for enzyme and polymer science.</p>
+<span class="chip">ThermoPET</span><span class="chip">OmniZyme</span><span class="chip">PolyTg</span><span class="chip">RemedicaAI</span></div>""",
+                unsafe_allow_html=True)
+    c1, c2, c3 = st.columns(3)
+    c1.link_button("GitHub", "https://github.com/bigthinker-code", use_container_width=True)
+    c2.link_button("Medium", "https://medium.com/@roheemoyindamola", use_container_width=True)
+    c3.link_button("Portfolio", "https://abdulroheemagboola.netlify.app", use_container_width=True)
+
+pages = [st.Page(home, title="Home", icon=":material/home:", default=True),
+         st.Page(page_predict, title="Predict", icon=":material/science:", url_path="predict"),
+         st.Page(page_3d, title="3D Structure", icon=":material/view_in_ar:", url_path="structure"),
+         st.Page(page_scan, title="Scanner", icon=":material/grid_on:", url_path="scanner"),
+         st.Page(page_batch, title="Batch", icon=":material/table_view:", url_path="batch"),
+         st.Page(page_method, title="Model and Method", icon=":material/schema:", url_path="method"),
+         st.Page(page_engineer, title="ML Engineer", icon=":material/person:", url_path="engineer")]
+st.navigation(pages).run()
