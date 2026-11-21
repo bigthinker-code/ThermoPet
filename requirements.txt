@@ -6,5 +6,5 @@ joblib
 streamlit
 numpy
 pandas
-altair
+plotly
 requests
