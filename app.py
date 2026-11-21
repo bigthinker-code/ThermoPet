@@ -16,39 +16,39 @@ AA = "ACDEFGHIKLMNPQRSTVWY"
 TRIAD = {160: "S", 206: "D", 237: "H"}
 PRESETS = {"Wild type": "", "ThermoPETase": "S121E/D186H/R280A",
            "FAST-PETase": "S121E/D186H/R224Q/N233K/R280A"}
-AMBER, CYAN, BG, CARD = "#f5b942", "#2dd4bf", "#07141a", "#0f232d"
+AMBER, CYAN, BG, CARD = "#ffc247", "#4cc9f0", "#0a0807", "#17100d"
 
 st.set_page_config(page_title="ThermoPET", page_icon="🧬", layout="wide")
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700;800&display=swap');
 html,body,.stApp,button,input,textarea{font-family:'Fira Sans',sans-serif}
-.stApp{background:#07141a}
+.stApp{background:#0a0807}
 header[data-testid=stHeader]{background:transparent}
 footer{visibility:hidden}
 .block-container{max-width:1180px;padding-top:2.5rem}
-[data-testid=stSidebar]{background:#081920;border-right:1px solid #12313a}
+[data-testid=stSidebar]{background:#0d0a09;border-right:1px solid #2a1a12}
 [data-testid=stSidebarNavLink]{border-radius:10px;padding:8px 10px}
-[data-testid=stSidebarNavLink][aria-current=page]{background:#0e2f38;font-weight:700}
+[data-testid=stSidebarNavLink][aria-current=page]{background:#2a1a10;font-weight:700}
 h2{font-weight:700;letter-spacing:-.5px}
-.hero{position:relative;overflow:hidden;border:1px solid #14424a;border-radius:26px;padding:58px 50px;margin-bottom:36px;
-background:radial-gradient(700px 420px at 95% 40%,rgba(245,185,66,.22),transparent 70%),#0a1d25}
-.hero:before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'><path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%232dd4bf' stroke-opacity='.3'/><path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%232dd4bf' stroke-opacity='.3'/></svg>");
+.hero{position:relative;overflow:hidden;border:1px solid #4a2a18;border-radius:26px;padding:58px 50px;margin-bottom:36px;
+background:radial-gradient(700px 420px at 95% 40%,rgba(255,106,43,.25),transparent 70%),#120c09}
+.hero:before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'><path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23ff6a2b' stroke-opacity='.3'/><path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23ff6a2b' stroke-opacity='.3'/></svg>");
 -webkit-mask-image:linear-gradient(90deg,transparent 40%,#000);mask-image:linear-gradient(90deg,transparent 40%,#000)}
 .hero>*{position:relative}
 .hero h1{font-size:3.6rem;line-height:1.05;font-weight:800;margin:0 0 18px;max-width:780px;letter-spacing:-1px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,#2dd4bf,#f5b942);-webkit-background-clip:text;color:transparent}
-.hero p{color:#b8c7cc;font-size:1.15rem;max-width:650px;line-height:1.7;margin:0 0 22px}
-.chip{display:inline-block;padding:7px 16px;margin:0 10px 8px 0;border-radius:99px;border:1px solid #1e6b66;color:#5eead4;font-size:.9rem;background:rgba(7,20,26,.6)}
-.step{background:#0f232d;border:1px solid #16363f;border-top:3px solid #2dd4bf;border-radius:18px;padding:24px;height:100%}
-.step h4{margin:0 0 8px;font-size:1.3rem;font-weight:700}.step p{color:#9fb3b9;margin:0;line-height:1.6}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#ff5a1f,#ffc247);-webkit-background-clip:text;color:transparent}
+.hero p{color:#cbbfb6;font-size:1.15rem;max-width:650px;line-height:1.7;margin:0 0 22px}
+.chip{display:inline-block;padding:7px 16px;margin:0 10px 8px 0;border-radius:99px;border:1px solid #7a3a1c;color:#ffb27a;font-size:.9rem;background:rgba(7,20,26,.6)}
+.step{background:#17100d;border:1px solid #33201a;border-top:3px solid #ff6a2b;border-radius:18px;padding:24px;height:100%}
+.step h4{margin:0 0 8px;font-size:1.3rem;font-weight:700}.step p{color:#b3a59b;margin:0;line-height:1.6}
 .brand{font-size:1.8rem;font-weight:800;display:flex;gap:10px;align-items:center;margin-top:6px}
-.brand b{color:#2dd4bf;font-size:2rem}.tag{color:#8fb0b5;font-size:.92rem;line-height:1.5}
-div[data-testid=stMetric]{background:#0f232d;border:1px solid #16363f;border-radius:14px;padding:14px 16px}
-div[data-baseweb=input]>div,div[data-baseweb=textarea]>div,div[data-baseweb=select]>div{background:#0c2029;border-color:#16363f}
-.stButton>button[kind=primary],.stDownloadButton>button{background:linear-gradient(90deg,#2dd4bf,#f5b942);border:0;color:#06141a;font-weight:700}
-.seq{font-family:monospace;line-height:2;background:#0f232d;border:1px solid #16363f;border-radius:12px;padding:12px}
-.blk{display:inline-block;margin:0 10px 0 0}.blk i{display:block;font-size:.6rem;color:#6b8a90;font-style:normal}
-.mut{color:#111;background:#f5b942;border-radius:3px;padding:0 2px}
+.brand b{color:#ff6a2b;font-size:2rem}.tag{color:#a89a90;font-size:.92rem;line-height:1.5}
+div[data-testid=stMetric]{background:#17100d;border:1px solid #33201a;border-radius:14px;padding:14px 16px}
+div[data-baseweb=input]>div,div[data-baseweb=textarea]>div,div[data-baseweb=select]>div{background:#1a120e;border-color:#33201a}
+.stButton>button[kind=primary],.stDownloadButton>button{background:linear-gradient(90deg,#ff5a1f,#ffc247);border:0;color:#1a0d05;font-weight:700}
+.seq{font-family:monospace;line-height:2;background:#17100d;border:1px solid #33201a;border-radius:12px;padding:12px}
+.blk{display:inline-block;margin:0 10px 0 0}.blk i{display:block;font-size:.6rem;color:#8a7a70;font-style:normal}
+.mut{color:#111;background:#ffc247;border-radius:3px;padding:0 2px}
 .leg span{margin-right:18px;font-size:.85rem;color:#b6bdcc}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
 </style>""", unsafe_allow_html=True)
 
@@ -130,7 +130,7 @@ def gauge(tm, wt):
         delta={"reference": wt, "suffix": " °C"},
         gauge={"axis": {"range": [min(30, tm-5), max(90, tm+5)]}, "bar": {"color": AMBER},
                "bgcolor": CARD, "threshold": {"line": {"color": CYAN, "width": 4}, "value": wt},
-               "steps": [{"range": [0, 50], "color": "#0e2a33"}, {"range": [50, 70], "color": "#2a2210"},
+               "steps": [{"range": [0, 50], "color": "#10202b"}, {"range": [50, 70], "color": "#2a2210"},
                          {"range": [70, 200], "color": "#3a1a14"}]}))
     return dark(f, 270)
 
@@ -144,24 +144,24 @@ def seq_html(wt, s):
 
 def dcolor(d, m):
     t = max(-1, min(1, d/m)) if m else 0
-    cold, mid, hot = (59, 130, 246), (55, 65, 81), (245, 185, 66)
+    cold, mid, hot = (76, 201, 240), (63, 48, 41), (255, 194, 71)
     a, b = (mid, hot) if t >= 0 else (mid, cold)
     c = [int(a[i] + (b[i]-a[i])*abs(t)) for i in range(3)]
     return "#%02x%02x%02x" % tuple(c)
 
 VIEW_JS = """<div id="v" style="width:100%;height:__H__px;border-radius:14px;overflow:hidden;position:relative"></div>
 <script src="https://3Dmol.org/build/3Dmol-min.js"></script><script>
-const C=__CFG__;const v=$3Dmol.createViewer("v",{backgroundColor:"#07141a"});
+const C=__CFG__;const v=$3Dmol.createViewer("v",{backgroundColor:"#0a0807"});
 const lab=(t,c)=>({fontSize:12,fontColor:c,backgroundColor:"#000",backgroundOpacity:0.65,showBackground:true});
 fetch("https://files.rcsb.org/download/"+C.pdb+".pdb").then(r=>{if(!r.ok)throw 0;return r.text()}).then(t=>{
 v.addModel(t,"pdb");v.setStyle({},{});let c={opacity:1};
-if(C.mode==="spectrum")c.color="spectrum";else if(C.mode==="grey")c.color="#4b5563";else c.colorfunc=a=>C.colors[a.resi]||"#374151";
+if(C.mode==="spectrum")c.color="spectrum";else if(C.mode==="thermal")c.colorfunc=a=>{const t=Math.min(1,Math.max(0,(a.resi-30)/260));return "rgb("+Math.round(140+115*t)+","+Math.round(50+144*t)+","+Math.round(30+41*t)+")"};else if(C.mode==="grey")c.color="#5a4a42";else c.colorfunc=a=>C.colors[a.resi]||"#3f3029";
 v.setStyle({chain:"A"},{cartoon:c});
 if(C.surface)v.addSurface($3Dmol.SurfaceType.MS,{opacity:0.18,color:"#9ca3af"},{chain:"A"});
-C.triad.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#2dd4bf",radius:0.22}});
-v.addLabel(x[1],lab(0,"#2dd4bf"),{chain:"A",resi:x[0],atom:"CA"})});
-C.muts.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#f5b942",radius:0.3},sphere:{color:"#f5b942",radius:0.55,opacity:0.45}});
-v.addLabel(x[1],lab(0,"#f5b942"),{chain:"A",resi:x[0],atom:"CA"})});
+C.triad.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#4cc9f0",radius:0.22}});
+v.addLabel(x[1],lab(0,"#4cc9f0"),{chain:"A",resi:x[0],atom:"CA"})});
+C.muts.forEach(x=>{v.addStyle({chain:"A",resi:x[0]},{stick:{color:"#ffc247",radius:0.3},sphere:{color:"#ffc247",radius:0.55,opacity:0.45}});
+v.addLabel(x[1],lab(0,"#ffc247"),{chain:"A",resi:x[0],atom:"CA"})});
 v.zoomTo({chain:"A"});if(C.spin)v.spin(true);v.render();
 }).catch(()=>{document.getElementById("v").innerHTML="<p style='color:#fb7185;padding:20px'>Could not load the structure from RCSB.</p>"});
 </script>"""
@@ -222,7 +222,7 @@ def page_predict():
             else "About as stable as wild type.")
         names = ["Wild type"] + [k for k in PRESETS if k != "Wild type"] + [L["label"]]
         vals = L["refs"] + [L["tm"]]
-        fig = go.Figure(go.Bar(x=names, y=vals, marker_color=["#4b5563", CYAN, CYAN, AMBER],
+        fig = go.Figure(go.Bar(x=names, y=vals, marker_color=["#5a4a42", CYAN, CYAN, AMBER],
                                text=[f"{v:.1f}" for v in vals], textposition="outside"))
         fig.update_yaxes(range=[min(vals)-8, max(vals)+6], title="Predicted Tm (°C)")
         st.plotly_chart(dark(fig, 300), use_container_width=True)
@@ -238,7 +238,7 @@ def page_3d():
     default = "/".join(L["muts"]) if L and L["muts"] else PRESETS["ThermoPETase"]
     c1, c2 = st.columns([2, 1])
     txt = c1.text_input("Mutations to highlight", default, key="m3d_" + default)
-    cm = c2.selectbox("Colour the protein by", ["Spectrum", "Scanner effect", "Plain grey"])
+    cm = c2.selectbox("Colour the protein by", ["Thermal", "Spectrum", "Scanner effect", "Plain grey"])
     o1, o2, o3 = st.columns(3)
     surf, tri, spin = o1.toggle("Surface"), o2.toggle("Catalytic triad", True), o3.toggle("Spin")
     try:
@@ -252,11 +252,11 @@ def page_3d():
         else:
             g = sc.groupby("position")["delta_vs_wt_C"].mean(); mx = g.abs().max()
             colors = {int(p): dcolor(v, mx) for p, v in g.items()}
-    viewer(ms, {"Spectrum": "spectrum", "Plain grey": "grey"}.get(cm, "scan"), surf,
+    viewer(ms, {"Thermal": "thermal", "Spectrum": "spectrum", "Plain grey": "grey"}.get(cm, "scan"), surf,
            TR if tri else {}, spin, colors)
     st.markdown(f'<div class="leg"><span><i class="dot" style="background:{AMBER}"></i>Mutated residues</span>'
                 f'<span><i class="dot" style="background:{CYAN}"></i>Catalytic triad</span>'
-                f'<span><i class="dot" style="background:#3b82f6"></i>Scan: destabilising</span>'
+                f'<span><i class="dot" style="background:#4cc9f0"></i>Scan: destabilising</span>'
                 f'<span><i class="dot" style="background:{AMBER}"></i>Scan: stabilising</span></div>',
                 unsafe_allow_html=True)
     st.caption(f"Structure: PDB {PDB_ID}, wild type IsPETase, shown from the RCSB server. Drag to rotate, scroll to zoom.")
@@ -284,7 +284,7 @@ def page_scan():
         z = sc.pivot(index="substitution", columns="position", values="delta_vs_wt_C").reindex(list(AA))
         mx = float(np.nanmax(np.abs(z.values)))
         fig = go.Figure(go.Heatmap(z=z.values, x=[str(c) for c in z.columns], y=list(z.index), zmin=-mx, zmax=mx,
-            colorscale=[[0, "#3b82f6"], [0.5, "#1f2937"], [1, AMBER]], colorbar={"title": "ΔTm °C"}))
+            colorscale=[[0, "#4cc9f0"], [0.5, "#241914"], [1, AMBER]], colorbar={"title": "ΔTm °C"}))
         fig.update_xaxes(type="category", title="Position"); fig.update_yaxes(autorange="reversed")
         st.plotly_chart(dark(fig, 480), use_container_width=True)
         top = sc.sort_values("delta_vs_wt_C", ascending=False)
